@@ -1,0 +1,232 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    background-color: #FFFFFF;
+    min-height: 100vh;
+    padding: 20px;
+}
+
+/* Header */
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 2cm;
+    padding-top: 20px;
+}
+
+.header-icon {
+    margin-right: 12px;
+}
+
+.header-title {
+    font-size: 24px;
+    font-weight: 700;
+    color: #10B981;
+    letter-spacing: -0.5px;
+}
+
+/* Main Content */
+.main-content {
+    max-width: 480px;
+    margin: 0 auto;
+}
+
+/* Timer */
+.timer-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 32px;
+}
+
+.clock-icon {
+    margin-right: 8px;
+}
+
+.timer {
+    font-size: 24px;
+    font-weight: 700;
+    color: #FFA500;
+    font-family: 'Courier New', monospace;
+}
+
+/* Payment Section */
+.payment-section {
+    text-align: center;
+    margin-bottom: 32px;
+}
+
+.section-title {
+    font-size: 24px;
+    font-weight: 700;
+    color: #000000;
+    margin-bottom: 12px;
+}
+
+.section-subtitle {
+    font-size: 16px;
+    color: #000000;
+    margin-bottom: 16px;
+    font-weight: 500;
+}
+
+.section-description {
+    font-size: 14px;
+    color: #6B7280;
+    line-height: 1.5;
+}
+
+/* Payment Details */
+.payment-details {
+    background-color: #F9FAFB;
+    border-radius: 12px;
+    padding: 24px;
+    margin-bottom: 32px;
+}
+
+.details-title {
+    font-size: 18px;
+    font-weight: 700;
+    color: #000000;
+    margin-bottom: 20px;
+}
+
+.detail-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 16px;
+}
+
+.detail-icon,
+.naira-icon {
+    margin-right: 12px;
+    color: #6B7280;
+}
+
+.naira-icon {
+    font-size: 20px;
+    font-weight: 700;
+}
+
+.detail-label {
+    font-size: 14px;
+    color: #6B7280;
+    margin-right: 8px;
+    min-width: 80px;
+}
+
+.detail-value {
+    font-size: 14px;
+    color: #000000;
+    font-weight: 500;
+    flex: 1;
+}
+
+/* Upload Section */
+.upload-section {
+    margin-bottom: 32px;
+}
+
+.upload-title {
+    font-size: 18px;
+    font-weight: 700;
+    color: #000000;
+    margin-bottom: 16px;
+}
+
+.upload-area {
+    border: 2px dashed #E5E7EB;
+    border-radius: 12px;
+    padding: 40px 20px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.upload-area:hover {
+    border-color: #10B981;
+    background-color: #F0FDF4;
+}
+
+.upload-icon {
+    margin-bottom: 16px;
+}
+
+.upload-text {
+    font-size: 16px;
+    color: #000000;
+    font-weight: 500;
+    margin-bottom: 8px;
+}
+
+.upload-hint {
+    font-size: 14px;
+    color: #6B7280;
+}
+
+/* Proceed Button */
+.proceed-button {
+    background-color: #10B981;
+    color: #000000;
+    border: none;
+    border-radius: 12px;
+    padding: 16px;
+    font-size: 16px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    width: 100%;
+}
+
+.proceed-button:hover {
+    background-color: #059669;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
+}
+
+.proceed-button:active {
+    transform: translateY(0);
+}
+
+.copy-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 4px;
+    margin-left: 8px;
+    border-radius: 4px;
+    transition: background-color 0.2s ease;
+}
+
+.copy-button:hover {
+    background-color: #F3F4F6;
+}
+
+.copy-button.copied {
+    background-color: #10B981;
+}
+
+.copy-button.copied svg {
+    stroke: white;
+}
+
+/* Responsive */
+@media (max-width: 480px) {
+    .header-title {
+        font-size: 20px;
+    }
+
+    .section-title {
+        font-size: 20px;
+    }
+
+    .timer {
+        font-size: 20px;
+    }
+}

